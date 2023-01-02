@@ -47,7 +47,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
       };
     
       try {
-        const result = await instance.post('/engines/davinci/completions', completionParmas);
+        const result = await instance.post('/engines/text-davinci-003/completions', completionParmas);
         const botResponse = result.data.choices[0].text.trim();
         agent.add(botResponse);
       } catch (err) {
