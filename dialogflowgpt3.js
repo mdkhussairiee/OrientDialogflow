@@ -129,7 +129,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
 
     const completionParmas = {
       'model': 'gpt-3.5-turbo',
-      'messages': dialog.concat({ role: "user", content: prompt + " " + promptEngineering + KnowledgeDataset }),
+      'messages': dialog({ role: "user", content: prompt + " " + promptEngineering + KnowledgeDataset }),
       'max_tokens': 500,
       'temperature': 0.85,
     };
