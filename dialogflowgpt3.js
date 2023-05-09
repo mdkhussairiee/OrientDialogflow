@@ -18,29 +18,26 @@ app.post("/dialogflow", express.json(), (req, res) => {
 
   async function defaultFallback(agent) {
 	  
-		// Get current date
-		const currentDate = new Date();
-		
-		// Get current date and time
-		const currentTime = new Date();
+  // Get current date and time
+  const now = new Date();
 
-		// Format date as a string
-		const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
-		
-		// Format time as a string
-		const formattedTime = `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
-		
-        const now = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-        const formattedDateTime = now.toLocaleString('en-US', options);
+  // Format date as a string
+  const formattedDate = now.toLocaleDateString('ms-MY');
+
+  // Format time as a string
+  const formattedTime = now.toLocaleTimeString('ms-MY');
+
+  // Format date and time as a string
+  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+  const formattedDateTime = now.toLocaleString('ms-MY', options);
+
+  let KnowledgeDataset = 
+    `This is an uplifting and practical conversation between any human, and an AI Assistant named Debra. \n\n` +
+    `Debra knows current date and time now is ${formattedDateTime} \n\n` +
+    `Debra knows today date is ${formattedDate} \n\n` +
+    `Debra knows current time now is ${formattedTime} \n\n` ;
 	  
-	  	let KnowledgeDataset = 
-			`This is an uplifting and practical conversation between any human, and an AI Assistant named Debra. \n\n` +
-			`Debra knows current date and time now is ${formattedDateTime} \n\n` +
-			`Debra knows today date is ${formattedDate} \n\n` +
-			`Debra knows current time now is ${formattedTime} \n\n` ;
-
-		const promptEngineering = `
+   const promptEngineering = `
 					Debra is an AI assistant for Orient Telecoms that can have meaningful conversations with users.  
 					Debra is created by Orient Telecoms.
 					Debra will speak based on user language.
