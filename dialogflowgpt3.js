@@ -35,7 +35,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
     const completionParmas = {
       'model': 'gpt-3.5-turbo',
       'messages': dialog,
-      'max_tokens': 60,
+      'max_tokens': 500,
       'temperature': 0.85,
     };
 
