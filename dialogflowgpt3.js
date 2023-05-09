@@ -5,6 +5,8 @@ const axios = require('axios');
 const { WebhookClient } = require("dialogflow-fulfillment");
 const app = express();
 
+const moment = require('moment-timezone');
+
 app.post("/dialogflow", express.json(), (req, res) => {
   const agent = new WebhookClient({ request: req, response: res });
   let intentMap = new Map();
@@ -16,20 +18,19 @@ app.post("/dialogflow", express.json(), (req, res) => {
     agent.add('Hi, I am Debra! I am your virtual personal assistant from Orient Telecoms. How are you doing today?');
   }
 
-  async function defaultFallback(agent) {
+  async function defaultFallback(agent) {	
 	  
-  // Get current date and time
-  const now = new Date();
+  // Get current date and time in Kuala Lumpur, Malaysia
+  const now = moment().tz('Asia/Kuala_Lumpur');
 
   // Format date as a string
-  const formattedDate = now.toLocaleDateString('ms-MY');
+  const formattedDate = now.format('YYYY-MM-DD');
 
   // Format time as a string
-  const formattedTime = now.toLocaleTimeString('ms-MY');
+  const formattedTime = now.format('HH:mm:ss');
 
   // Format date and time as a string
-  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-  const formattedDateTime = now.toLocaleString('ms-MY', options);
+  const formattedDateTime = now.format('YYYY-MM-DD HH:mm:ss');
 
   let KnowledgeDataset = 
     `This is an uplifting and practical conversation between any human, and an AI Assistant named Debra. \n\n` +
