@@ -39,7 +39,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
         `Debra knows today date is ${formattedDate} \n\n` +
         `Debra knows current time now is ${formattedTime} \n\n` ;
 	  
-   let promptEngineering = `
+   const promptEngineering = `
 					Debra is an AI assistant for Orient Telecoms that can have meaningful conversations with users.  
 					Debra is created by Orient Telecoms.
 					Debra will speak based on user language.
