@@ -115,11 +115,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
     const dialog = [
     {
       'role': 'system',
-      'content': promptEngineering
-    },
-    {
-      'role': 'system',
-      'content': KnowledgeDataset
+      'content': promptEngineering + KnowledgeDataset
     },
       {
         'role': 'assistant',
