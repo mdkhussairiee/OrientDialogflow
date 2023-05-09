@@ -13,7 +13,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
   agent.handleRequest(intentMap);
 
   function welcome(agent) {
-    agent.add('Hi, I am Eddie! I am your virtual personal assistant from Asrix Prime. How are you doing today?');
+    agent.add('Hi, I am Debra! I am your virtual personal assistant from Orient Telecoms. How are you doing today?');
   }
 
   async function defaultFallback(agent) {
@@ -24,7 +24,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
       },
       {
         'role': 'assistant',
-        'content': 'Hello, I am Eddie! I am your virtual personal assistant from Asrix Prime. How are you doing today?'
+        'content': 'Hello, I am Debra! I am your virtual personal assistant from Orient Telecoms. How are you doing today?'
       },
       {
         'role': 'user',
