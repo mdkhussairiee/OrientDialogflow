@@ -17,21 +17,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
   }
 
   async function defaultFallback(agent) {
-    const dialog = [
-      {
-        'role': 'system',
-        'content': 'The following is a conversation with an AI assistant that can have meaningful conversations with users. The assistant is helpful, empathic, and friendly. Its objective is to make the user feel better by feeling heard. With each response, the AI assisstant prompts the user to continue the conversation in a natural way.'
-      },
-      {
-        'role': 'assistant',
-        'content': 'Hello, I am Debra! I am your virtual personal assistant from Orient Telecoms. How are you doing today?'
-      },
-      {
-        'role': 'user',
-        'content': agent.query
-      }
-    ];
-    
+	  
 		// Get current date
 		const currentDate = new Date();
 		
@@ -47,8 +33,8 @@ app.post("/dialogflow", express.json(), (req, res) => {
         const now = new Date();
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
         const formattedDateTime = now.toLocaleString('en-US', options);
-
-		let KnowledgeDataset = 
+	  
+	  	let KnowledgeDataset = 
 			`This is an uplifting and practical conversation between any human, and an AI Assistant named Debra. \n\n` +
 			`Debra knows current date and time now is ${formattedDateTime} \n\n` +
 			`Debra knows today date is ${formattedDate} \n\n` +
@@ -126,10 +112,30 @@ app.post("/dialogflow", express.json(), (req, res) => {
 					Orient Telecoms was incorporated in the 26th of February 2016 in the UK and is publicly traded on the Standard List of the Main Market of the London Stock Exchange.  
 					Orient Telecoms will only engage a customer if it is able to help the customers to either increase revenue, reduce cost or improve efficiency & productivity.
 			  `;
+	  
+    const dialog = [
+    {
+      'role': 'system',
+      'content': promptEngineering
+    },
+    {
+      'role': 'system',
+      'content': KnowledgeDataset
+    },
+      {
+        'role': 'assistant',
+        'content': 'Hello, I am Debra! I am your virtual personal assistant from Orient Telecoms. How are you doing today?'
+      },
+      {
+        'role': 'user',
+        'content': agent.query
+      }
+    ];
+    
 
     const completionParmas = {
       'model': 'gpt-3.5-turbo',
-      'messages': dialog({ role: "user", content: prompt + " " + promptEngineering + KnowledgeDataset }),
+      'messages': dialog,
       'max_tokens': 500,
       'temperature': 0.85,
     };
