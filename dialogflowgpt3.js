@@ -17,10 +17,37 @@ app.post("/dialogflow", express.json(), (req, res) => {
   }
 
   async function defaultFallback(agent) {
+    
+      // Get current date
+      const currentDate = new Date();
+
+      // Get current date and time
+      const currentTime = new Date();
+
+      // Format date as a string
+      const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+
+      // Format time as a string
+      const formattedTime = `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
+
+      const now = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+      const formattedDateTime = now.toLocaleString('en-US', options);
+
+      let KnowledgeDateTime =
+          `Debra knows current date and time now is ${formattedDateTime} \n\n` +
+          `Debra knows today date is ${formattedDate} \n\n` +
+          `Debra knows current time now is ${formattedTime} \n\n` ;
+    
     const dialog = [
       {
         'role': 'system',
         'content': 'Debra is an AI assistant for Orient Telecoms that can have meaningful conversations with users. Debra is created by Orient Telecoms.
+        '
+      },
+      {
+        'role': 'system',
+        'content': KnowledgeDateTime
         '
       },
       {
