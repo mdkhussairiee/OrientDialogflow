@@ -35,9 +35,9 @@ app.post("/dialogflow", express.json(), (req, res) => {
       const formattedDateTime = now.toLocaleString('en-US', options);
 
       let KnowledgeDateTime =
-          `Debra knows current date and time now is ${formattedDateTime} \n\n` +
-          `Debra knows today date is ${formattedDate} \n\n` +
-          `Debra knows current time now is ${formattedTime} \n\n` ;
+          `Debra knows current date and time now is ${formattedDateTime}` +
+          `Debra knows today date is ${formattedDate}` +
+          `Debra knows current time now is ${formattedTime}` ;
     
     const dialog = [
       {
